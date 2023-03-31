@@ -9,36 +9,26 @@ while True:
         print("The word must contain only letters of the alphabet without spaces, accents or capitals.", word)
 
 # Convertit le mot en une liste de lettres
-list_letter = sorted(word)
+list_letter = list(word)
 
 # Trie les lettres dans l'ordre alphabétique
-lettres_triees = sorted(list_letter )
-
-
-
-mot = input("Entrez un mot sans espace, accent ou majuscule : ")
-
-# Convertit le mot en une liste de lettres
-lettres = list(mot)
-
-# Trie les lettres dans l'ordre alphabétique
-lettres_triees = sorted(lettres)
+lettres_triees = sorted(list_letter)
 
 # Compare le mot d'origine avec la version triée des lettres
-if lettres_triees == lettres:
-    print("Le mot", mot, "est déjà le plus grand mot dans l'ordre alphabétique.")
+if lettres_triees == list_letter:
+    print("word", word)
 else:
     # Recherche la première lettre dans le mot qui peut être remplacée par une lettre plus grande
-    for i in range(len(lettres)-1, 0, -1):
-        if lettres[i] > lettres[i-1]:
+    for i in range(len(list_letter)-1, 0, -1):
+        if list_letter[i] > list_letter[i-1]:
             # Trouve la plus petite lettre dans le suffixe à droite de la lettre à changer
             j = i
-            while j < len(lettres) and lettres[j] > lettres[i-1]:
+            while j < len(list_letter) and list_letter[j] > list_letter[i-1]:
                 j += 1
-            # Echange les lettres
-            lettres[i-1], lettres[j-1] = lettres[j-1], lettres[i-1]
+            # Echange les list_letter
+            list_letter[i-1], list_letter[j-1] = list_letter[j-1], list_letter[i-1]
             # Trie le suffixe à droite de la lettre changée
-            lettres[i:] = sorted(lettres[i:])
+            list_letter[i:] = sorted(list_letter[i:])
             break
     # Affiche le nouveau mot
-    print("Le mot modifié est :", "".join(lettres))
+    print("Le mot modifié est :", "".join(list_letter))
